@@ -67,4 +67,5 @@ app.get('/hello', (req: Request, res: Response) =>
  * but use environment variable PORT on Heroku if available.
  */
 const PORT = 8080;
-app.listen(process.env.PORT || PORT);
+// app.listen(process.env.PORT || PORT);
+app.set('port', PORT)
