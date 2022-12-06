@@ -46,7 +46,8 @@ if (process.env.ENV === 'PRODUCTION') {
 
 // 'mongodb+srv://cs5500fa22:HqisGljV7ra4jAy2@cluster0.bkwci2f.mongodb.net/test'
 // mongodb://localhost:27017/tuiter'
-mongoose.connect('mongodb+srv://cs5500fa22:HqisGljV7ra4jAy2@cluster0.bkwci2f.mongodb.net/CS5520Fa22_Heye',options);
+//'mongodb+srv://cs5500fa22:HqisGljV7ra4jAy2@cluster0.bkwci2f.mongodb.net/CS5520Fa22_Heye'
+mongoose.connect(process.env.MONGODB_URI,options);
 
 // const db = conn.db('CS5520Fa22_Heye')
 
