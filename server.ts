@@ -47,7 +47,7 @@ if (process.env.ENV === 'PRODUCTION') {
 // 'mongodb+srv://cs5500fa22:HqisGljV7ra4jAy2@cluster0.bkwci2f.mongodb.net/test'
 // mongodb://localhost:27017/tuiter'
 //mongodb+srv://cs5500fa22:HqisGljV7ra4jAy2@cluster0.bkwci2f.mongodb.net/CS5520Fa22_Heye
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://cs5500fa22:HqisGljV7ra4jAy2@cluster0.bkwci2f.mongodb.net/CS5520Fa22_Heye?retryWrites=true&w=majority"
+const MONGODB_URI = "mongodb+srv://cs5500fa22:HqisGljV7ra4jAy2@cluster0.bkwci2f.mongodb.net/CS5520Fa22_Heye?retryWrites=true&w=majority"
 mongoose.connect(MONGODB_URI,options);
 
 // const db = conn.db('CS5520Fa22_Heye')
