@@ -49,11 +49,11 @@ const options = {
 //mongodb+srv://cs5500fa22:HqisGljV7ra4jAy2@cluster0.bkwci2f.mongodb.net/CS5520Fa22_Heye
 //mongodb+srv://cs5500fa22:HqisGljV7ra4jAy2@cluster0.bkwci2f.mongodb.net/?retryWrites=true&w=majority
 
-// const MONGODB_URI = "mongodb+srv://cs5500fa22:HqisGljV7ra4jAy2@cluster0.bkwci2f.mongodb.net/CS5520Fa22_Heye?retryWrites=true&w=majority"
+// // const MONGODB_URI = "mongodb+srv://cs5500fa22:HqisGljV7ra4jAy2@cluster0.bkwci2f.mongodb.net/CS5520Fa22_Heye?retryWrites=true&w=majority"
 // mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://cs5500fa22:HqisGljV7ra4jAy2@cluster0.bkwci2f.mongodb.net/CS5520Fa22_Heye', options);
-//
-// // const db = conn.db('CS5520Fa22_Heye')
-//
+// //
+// // // const db = conn.db('CS5520Fa22_Heye')
+// //
 // const userController = UserController.getInstance(app);
 // const tuitController = TuitController.getInstance(app);
 // const followController = FollowController.getInstance(app);
@@ -71,4 +71,12 @@ app.get('/hello', (req: Request, res: Response) =>
  * but use environment variable PORT on Heroku if available.
  */
 const PORT = 4000;
-app.listen(process.env.PORT || PORT);
+const port = process.env.PORT || PORT
+app.listen(port)
+
+console.log('sever running on port',port);
+
+// app.listen(port, err, () => {
+//     if (err) return console.log(err);
+//     console.log('sever running on port',port);
+// })
