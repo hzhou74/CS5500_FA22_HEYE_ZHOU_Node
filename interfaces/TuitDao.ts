@@ -1,3 +1,6 @@
+/**
+ * @file Tuit Dao for implementing CRUD operations
+ */
 import Tuit from "../models/Tuit";
 
 export default interface TuitDao {

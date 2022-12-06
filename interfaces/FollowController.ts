@@ -1,3 +1,6 @@
+/**
+ * @file Interface for followController
+ */
 import { Request, Response } from "express";
 
 export default interface FollowController {

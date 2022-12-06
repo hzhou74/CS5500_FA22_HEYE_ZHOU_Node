@@ -1,3 +1,6 @@
+/**
+ * @file user Dao interface for implementing CRUD operations
+ */
 import User from "../models/User";
 
 export default interface UserDao {

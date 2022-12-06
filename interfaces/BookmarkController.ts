@@ -1,3 +1,6 @@
+/**
+ * @file Interface for bookmarkController
+ */
 import { Request, Response } from "express";
 
 export default interface FollowController {

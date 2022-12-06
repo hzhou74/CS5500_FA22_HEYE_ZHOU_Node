@@ -1,3 +1,6 @@
+/**
+ * @file interface for bookmarkdao
+ */
 import Bookmark from "../models/Bookmark";
 import Tuit from "../models/Tuit";
 import User from "../models/User";

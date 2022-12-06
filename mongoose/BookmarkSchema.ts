@@ -1,3 +1,6 @@
+/**
+ * @file Creating mongoose bookmark schema
+ */
 import mongoose from "mongoose";
 
 const BookmarkSchema = new mongoose.Schema(

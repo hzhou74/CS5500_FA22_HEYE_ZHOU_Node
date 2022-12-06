@@ -1,3 +1,6 @@
+/**
+ * @file Creating mongoose tuit schema
+ */
 import mongoose from "mongoose";
 
 const TuitSchema = new mongoose.Schema(

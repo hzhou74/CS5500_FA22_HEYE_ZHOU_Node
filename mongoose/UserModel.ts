@@ -1,3 +1,6 @@
+/**
+ * @file Creating mongoose user model.
+ */
 import mongoose from "mongoose";
 import UserSchema from "./UserSchema";
 const UserModel = mongoose.model('UserModel', UserSchema);

@@ -1,3 +1,6 @@
+/**
+ * @file Creating mongoose tuit model
+ */
 import mongoose from "mongoose";
 
 import TuitSchema from "./TuitSchema";

@@ -1,3 +1,6 @@
+/**
+ * @file Controller interface RESTful Web service API for message resource
+ */
 import { Request, Response } from "express";
 
 export default interface MessageController {

@@ -1,3 +1,6 @@
+/**
+ * @file User Controller interface for RESTful Web service API for users resource
+ */
 import {Request, Response} from "express";
 
 export default interface UserController {

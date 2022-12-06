@@ -1,3 +1,6 @@
+/**
+ * @file interface for followdao
+ */
 import Message from "../models/Message";
 
 export default interface MessageDao {

@@ -1,3 +1,6 @@
+/**
+ * @file Creating mongoose message schema
+ */
 import mongoose from "mongoose";
 
 const MessageSchema = new mongoose.Schema(
