@@ -1,12 +1,12 @@
 /**
  * @file Implements an Express Node HTTP server.
  */
-import UserDao from "./daos/UserDao";
+// import UserDao from "./daos/UserDao";
 import UserController from "./controllers/UserController";
 import express, {Request, Response} from 'express';
 import mongoose from "mongoose";
 import TuitController from "./controllers/TuitController";
-import TuitDao from "./daos/TuitDao";
+// import TuitDao from "./daos/TuitDao";
 import FollowController from "./controllers/FollowController";
 import BookmarkController from "./controllers/BookmarkController";
 import MessageController from "./controllers/MessageController";
