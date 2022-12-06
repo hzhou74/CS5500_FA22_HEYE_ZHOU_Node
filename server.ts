@@ -32,17 +32,17 @@ const options = {
 }
 
 
-let sess = {
-    secret: process.env.SECRET,
-    cookie: {
-        secure: false
-    }
-}
+// let sess = {
+//     secret: process.env.SECRET,
+//     cookie: {
+//         secure: false
+//     }
+// }
 
-if (process.env.ENV === 'PRODUCTION') {
-    app.set('trust proxy', 1) // trust first proxy
-    sess.cookie.secure = true // serve secure cookies
-}
+// if (process.env.ENV === 'PRODUCTION') {
+//     app.set('trust proxy', 1) // trust first proxy
+//     sess.cookie.secure = true // serve secure cookies
+// }
 
 // 'mongodb+srv://cs5500fa22:HqisGljV7ra4jAy2@cluster0.bkwci2f.mongodb.net/test'
 // mongodb://localhost:27017/tuiter'
@@ -50,7 +50,7 @@ if (process.env.ENV === 'PRODUCTION') {
 //mongodb+srv://cs5500fa22:HqisGljV7ra4jAy2@cluster0.bkwci2f.mongodb.net/?retryWrites=true&w=majority
 
 // const MONGODB_URI = "mongodb+srv://cs5500fa22:HqisGljV7ra4jAy2@cluster0.bkwci2f.mongodb.net/CS5520Fa22_Heye?retryWrites=true&w=majority"
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/CS5520Fa22_Heye', options);
+mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://cs5500fa22:HqisGljV7ra4jAy2@cluster0.bkwci2f.mongodb.net/CS5520Fa22_Heye', options);
 
 // const db = conn.db('CS5520Fa22_Heye')
 
