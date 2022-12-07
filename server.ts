@@ -9,9 +9,9 @@ import mongoose from "mongoose";
 import UserController from "./controllers/UserController";
 import TuitController from "./controllers/TuitController";
 // import TuitDao from "./daos/TuitDao";
-// import FollowController from "./controllers/FollowController";
-// import BookmarkController from "./controllers/BookmarkController";
-// import MessageController from "./controllers/MessageController";
+import FollowController from "./controllers/FollowController";
+import BookmarkController from "./controllers/BookmarkController";
+import MessageController from "./controllers/MessageController";
 
 
 
@@ -58,9 +58,9 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://cs5500fa22:HqisGljV7r
 //
 const userController = UserController.getInstance(app);
 const tuitController = TuitController.getInstance(app);
-// const followController = FollowController.getInstance(app);
-// const bookmarkController = BookmarkController.getInstance(app);
-// const messageController = MessageController.getInstance(app);
+const followController = FollowController.getInstance(app);
+const bookmarkController = BookmarkController.getInstance(app);
+const messageController = MessageController.getInstance(app);
 
 app.get('/', (req: Request, res: Response) =>
     res.send('Welcome to Foundation of Software Engineering!!!!'));
