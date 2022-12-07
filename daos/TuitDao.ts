@@ -30,11 +30,11 @@ export default class TuitDao implements TuitDaoI {
 
     /**
      * Find tuit by user id
-     * @param {string}uid user id
+     * @param {string}userid user id
      * @returns array of tuit
      */
-    async findTuitsByUser(uid: string): Promise<any> {
-        return await TuitModel.find({ postedBy: uid });
+    async findTuitsByUser(userid: string): Promise<any> {
+        return await TuitModel.find({ postedBy: userid });
     }
 
     /**
@@ -48,7 +48,7 @@ export default class TuitDao implements TuitDaoI {
 
     /**
      * Find one tuit by the tuit id
-     * @param {string}tid tuid id
+     * @param {string}tid t id
      * @returns tuit
      */
     async findTuitById(tid: string): Promise<any> {
@@ -72,32 +72,22 @@ export default class TuitDao implements TuitDaoI {
     async deleteTuit(tid: string): Promise<any> {
         return await TuitModel.deleteOne({ _id: tid });
     }
+
+    /**
+     * delete tuit by user
+     * @param {string}userid user id
+     * @returns delete status
+     */
+    async deleteTuitByUser(userid: string): Promise<any> {
+        return await TuitModel.deleteOne({ _id: userid });
+    }
+    /**
+     * Create new tuit by user id
+     * @param {tuit} tuit tuit
+     * @param {userid} userid user id
+     * @returns tuit
+     */
+    async createTuitByUser(userid: string, tuit: Tuit): Promise<any> {
+        return await TuitModel.create({ ...tuit, postedBy: userid });
+    }
 }
-//     async findAllTuits(): Promise<Tuit[]> {
-//         return await TuitModel.find();
-//     }
-//
-//     async findTuitsByUser(uid: string): Promise<any> {
-//         return await TuitModel.find({ postedBy: uid }).populate(
-//             "postedBy",
-//             "username firstName lastName"
-//         );
-//     }
-//
-//     async findTuitById(tid: string): Promise<any> {
-//         return await TuitModel.findById(tid).populate(
-//             "postedBy",
-//             "username firstName lastName"
-//         );
-//     }
-//     async createTuit(tuit: Tuit): Promise<any> {
-//         return await TuitModel.create(tuit);
-//     }
-//     async deleteTuit(tid: string): Promise<any> {
-//         return await TuitModel.deleteOne({ _id: tid });
-//     }
-//     async updateTuit(tid: string, tuit: any): Promise<any> {
-//         return await TuitModel.updateOne({ _id: tid }, { $set: tuit });
-//     }
-// }
-//
