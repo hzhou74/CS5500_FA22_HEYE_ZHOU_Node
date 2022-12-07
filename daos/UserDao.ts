@@ -31,8 +31,8 @@ export default class UserDao implements UserDaoI {
      * @param {string}uid user id
      * @returns user
      */
-    async findUserById(uid: string): Promise<any> {
-        return await UserModel.findById(uid);
+    async findUserById(userid: string): Promise<any> {
+        return await UserModel.findById(userid);
     }
 
     /**
@@ -50,8 +50,8 @@ export default class UserDao implements UserDaoI {
      * @param user user
      * @returns update status
      */
-    async updateUser(uid: string, user: User): Promise<any> {
-        return await UserModel.updateOne({_id: uid}, {$set: user});
+    async updateUser(userid: string, user: User): Promise<any> {
+        return await UserModel.updateOne({_id: userid}, {$set: user});
     }
 
     /**
@@ -59,8 +59,8 @@ export default class UserDao implements UserDaoI {
      * @param uid user id
      * @returns delete status
      */
-    async deleteUser(uid: string):  Promise<any> {
-        return await UserModel.deleteOne({_id: uid});
+    async deleteUser(userid: string):  Promise<any> {
+        return await UserModel.deleteOne({_id: userid});
     }
 
 

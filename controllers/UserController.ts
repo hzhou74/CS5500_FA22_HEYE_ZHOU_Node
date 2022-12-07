@@ -67,7 +67,7 @@ export default class UserController implements UserControllerI {
      */
     deleteUser = (req: Request, res: Response) =>
         UserController.userDao
-            .deleteUser(req.params.uid)
+            .deleteUser(req.params.userid)
             .then((status) => res.json(status));
 
     private constructor() {
@@ -94,16 +94,16 @@ export default class UserController implements UserControllerI {
      */
     updateUser = (req: Request, res: Response) =>
         UserController.userDao
-            .updateUser(req.params.uid, req.body)
+            .updateUser(req.params.userid, req.body)
             .then((status) => res.json(status));
 
     // deleteUserByUsername(req: Request, res: Response) =>
     //     UserController.userDao
-    //         .deleteUserByUsername(req.params.uid)
+    //         .deleteUserByUsername(req.params.userid)
     //         .then((status) => res.json(status));
     // = (req: Request, res: Response) =>
     //     UserController.userDao
-    // .deleteUserByUsername(req.params.uid)
+    // .deleteUserByUsername(req.params.userid)
     // .then((status) => res.json(status));
 
     deleteUsersByUsername = (req: Request, res: Response) => {
@@ -120,13 +120,13 @@ export default class UserController implements UserControllerI {
 
     /**
      * Retrieves a user by user id
-     * @param {Request} req Represents request from client, including the params uid
+     * @param {Request} req Represents request from client, including the params userid
      * @param {Response} res Represents response to client, including the
      * body formatted as JSON containing the user object
      */
     findUserById = (req: Request, res: Response) =>
         UserController.userDao
-            .findUserById(req.params.uid)
+            .findUserById(req.params.userid)
             .then((user) => res.json(user));
     /**
      * Create a user
