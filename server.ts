@@ -22,16 +22,16 @@ const cors = require('cors')
 const app = express();
 app.use(cors());
 app.use(express.json());
-//
-// const options = {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//     autoIndex: false,
-//     maxPoolSize: 10,
-//     serverSelectionTimeoutMS: 5000,
-//     socketTimeoutMS: 45000,
-//     family: 4
-// }
+
+const options = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    autoIndex: false,
+    maxPoolSize: 10,
+    serverSelectionTimeoutMS: 5000,
+    socketTimeoutMS: 45000,
+    family: 4
+}
 
 
 // let sess = {
@@ -52,7 +52,7 @@ app.use(express.json());
 //mongodb+srv://cs5500fa22:HqisGljV7ra4jAy2@cluster0.bkwci2f.mongodb.net/?retryWrites=true&w=majority
 
 // const MONGODB_URI = "mongodb+srv://cs5500fa22:HqisGljV7ra4jAy2@cluster0.bkwci2f.mongodb.net/CS5520Fa22_Heye?retryWrites=true&w=majority"
-mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://cs5500fa22:HqisGljV7ra4jAy2@cluster0.bkwci2f.mongodb.net/CS5520Fa22_Heye');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://cs5500fa22:HqisGljV7ra4jAy2@cluster0.bkwci2f.mongodb.net/CS5520Fa22_Heye',options);
 //
 // // const db = conn.db('CS5520Fa22_Heye')
 //
