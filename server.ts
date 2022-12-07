@@ -1,11 +1,13 @@
 /**
  * @file Implements an Express Node HTTP server.
  */
-// import UserDao from "./daos/UserDao";
-// import UserController from "./controllers/UserController";
+
 import express, {Request, Response} from 'express';
 import mongoose from "mongoose";
-// import TuitController from "./controllers/TuitController";
+
+// import UserDao from "./daos/UserDao";
+import UserController from "./controllers/UserController";
+import TuitController from "./controllers/TuitController";
 // import TuitDao from "./daos/TuitDao";
 // import FollowController from "./controllers/FollowController";
 // import BookmarkController from "./controllers/BookmarkController";
@@ -54,8 +56,8 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://cs5500fa22:HqisGljV7r
 //
 // // const db = conn.db('CS5520Fa22_Heye')
 //
-// const userController = UserController.getInstance(app);
-// const tuitController = TuitController.getInstance(app);
+const userController = UserController.getInstance(app);
+const tuitController = TuitController.getInstance(app);
 // const followController = FollowController.getInstance(app);
 // const bookmarkController = BookmarkController.getInstance(app);
 // const messageController = MessageController.getInstance(app);
@@ -70,7 +72,7 @@ app.get('/hello', (req: Request, res: Response) =>
  * Start a server listening at port 4000 locally
  * but use environment variable PORT on Heroku if available.
  */
-const PORT = 4000;
+const PORT = 5000;
 // const port = process.env.PORT || PORT
 app.listen(process.env.PORT || PORT);
 
