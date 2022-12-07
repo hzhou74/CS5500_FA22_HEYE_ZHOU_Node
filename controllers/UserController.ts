@@ -1,13 +1,13 @@
 /**
- * @file RESTful Web service API for users resource
+ * @file RESTFUL\ Web service API for users resource
  */
 import {Request, Response, Express} from "express";
 import UserDao from "../daos/UserDao";
 import UserControllerI from "../interfaces/UserController";
 
 /**
- * @class UserController Implements RESTful Web service API for user resource.
- *   Defines the usering HTTP endpoints:
+ * @class UserController Implements RESTFUL Web service API for user resource.
+ *   Defines the user HTTP endpoints:
  * <ul>
  *     <li>POST /users to create a new user instance for
  *     a given user</li>
@@ -18,7 +18,7 @@ import UserControllerI from "../interfaces/UserController";
  * </ul>
  * @property {UserDao} userDao Singleton DAO implementing user CRUD operations
  * @property {UserController} userController Singleton controller implementing
- * RESTful Web service API
+ * RESTFUL Web service API
  */
 export default class UserController implements UserControllerI {
     // app: Express;
@@ -37,7 +37,7 @@ export default class UserController implements UserControllerI {
 
     /**
      * Creates singleton controller instance
-     * @param {Express} app Express instance to declare the RESTful Web service
+     * @param {Express} app Express instance to declare the RESTFUL Web service
      * API
      * @return UserController
      */
@@ -55,7 +55,7 @@ export default class UserController implements UserControllerI {
     };
 
     /**
-     * Delete a user with a uid.
+     * Delete a user with uid.
      * @param {Request} req Represents request from client, including path
      * parameter uid identifying the primary key of the user to be removed
      * @param {Response} res Represents response to client, including status
@@ -107,8 +107,5 @@ export default class UserController implements UserControllerI {
      */
     createUser = (req: Request, res: Response) =>
         UserController.userDao.createUser(req.body).then((user) => res.json(user));
-
-
-
 
 }

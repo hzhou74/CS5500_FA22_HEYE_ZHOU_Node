@@ -19,7 +19,7 @@ import Location from "./Location";
  * @property {Date} joined date of joined
  * @property {AccountType} accountType account type
  * @property {Location} location location
- * @property {MartialStatus} martialStatus martialStatus
+ * @property {MaritalStatus} martialStatus martialStatus
  */
 export default class User {
     private username: string = '';
