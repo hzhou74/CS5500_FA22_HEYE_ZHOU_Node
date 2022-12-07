@@ -51,6 +51,8 @@ export default class UserController implements UserControllerI {
             app.get("/users/:userid", UserController.userController.findUserById);
             app.post("/users", UserController.userController.createUser);
             app.delete("/users/:userid", UserController.userController.deleteUser);
+            app.delete("/users", UserController.userController.deleteAllUsers);
+            app.delete("/users/username/:username/delete", UserController.userController.deleteUsersByUsername);
             app.put("/users/:userid", UserController.userController.updateUser);
         }
         return UserController.userController;
@@ -103,25 +105,14 @@ export default class UserController implements UserControllerI {
     //     UserController.userDao
     // .deleteUserByUsername(req.params.uid)
     // .then((status) => res.json(status));
-    /**
-     * Delete a user by user name
-     * @param {Request} req Represents request from client, including path
-     * parameter username identifying the primary key of the user to be removed
-     * @param {Response} res Represents response to client, including status
-     * on whether deleting a user was successful or not
-     */
+
     deleteUsersByUsername = (req: Request, res: Response) => {
         UserController.userDao
             .deleteUsersByUsername(req.params.username)
             .then((status) => res.json(status));
     };
 
-    /**
-     * Delete all user from the database
-     * @param {Request} req Represents request from client
-     * @param {Response} res Represents response to client, including status
-     * on whether deleting a user was successful or not
-     */
+
     deleteAllUsers = (req: Request, res: Response) => {
         UserController.userDao.deleteAllUsers().then((status) => res.json(status));
     };
