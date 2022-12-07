@@ -2,6 +2,8 @@
  * @file RESTFUL\ Web service API for users resource
  */
 import {Request, Response, Express} from "express";
+import { ParamsDictionary } from "express-serve-static-core";
+import { ParsedQs } from "qs";
 import UserDao from "../daos/UserDao";
 import UserControllerI from "../interfaces/UserController";
 
@@ -66,7 +68,12 @@ export default class UserController implements UserControllerI {
             .deleteUser(req.params.uid)
             .then((status) => res.json(status));
 
-    private constructor() {}
+    private constructor() {
+    }
+
+    deleteUserByUsername(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>): void {
+        throw new Error("Method not implemented.");
+    }
     /**
      * Retrieves all user
      * @param {Request} req Represents request from client
@@ -87,6 +94,38 @@ export default class UserController implements UserControllerI {
         UserController.userDao
             .updateUser(req.params.uid, req.body)
             .then((status) => res.json(status));
+
+    // deleteUserByUsername(req: Request, res: Response) =>
+    //     UserController.userDao
+    //         .deleteUserByUsername(req.params.uid)
+    //         .then((status) => res.json(status));
+    // = (req: Request, res: Response) =>
+    //     UserController.userDao
+    // .deleteUserByUsername(req.params.uid)
+    // .then((status) => res.json(status));
+    /**
+     * Delete a user by user name
+     * @param {Request} req Represents request from client, including path
+     * parameter username identifying the primary key of the user to be removed
+     * @param {Response} res Represents response to client, including status
+     * on whether deleting a user was successful or not
+     */
+    deleteUsersByUsername = (req: Request, res: Response) => {
+        UserController.userDao
+            .deleteUsersByUsername(req.params.username)
+            .then((status) => res.json(status));
+    };
+
+    /**
+     * Delete all user from the database
+     * @param {Request} req Represents request from client
+     * @param {Response} res Represents response to client, including status
+     * on whether deleting a user was successful or not
+     */
+    deleteAllUsers = (req: Request, res: Response) => {
+        UserController.userDao.deleteAllUsers().then((status) => res.json(status));
+    };
+
 
     /**
      * Retrieves a user by user id
