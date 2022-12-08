@@ -34,13 +34,12 @@ export default class BookmarkController implements BookmarkControllerI {
             BookmarkController.bookmarkController = new BookmarkController();
 
             app.post(
-                "/bookmark",
-                BookmarkController.bookmarkController.createBookmark
+                "/users/:uid/bookmarks/:tid",
+                BookmarkController.bookmarkController.bookmarkATuit
             );
-
             app.delete(
-                "/bookmark/:bid",
-                BookmarkController.bookmarkController.unbookmark
+                "/users/:uid/bookmarks/:tid",
+                BookmarkController.bookmarkController.unBookmarkATuit
             );
 
             app.get(
@@ -78,9 +77,9 @@ export default class BookmarkController implements BookmarkControllerI {
      * @param {Response} res Represents response to client, including the
      * body formatted as JSON containing the new bookmark that was inserted in the database
      */
-    createBookmark = (req: Request, res: Response) =>
+    bookmarkATuit = (req: Request, res: Response) =>
         BookmarkController.bookmarkDao
-            .createBookmark(req.body)
+            .bookmarkATuit(req.params.tid, req.params.uid)
             .then((bookmark) => res.json(bookmark));
 
     /**
@@ -90,9 +89,9 @@ export default class BookmarkController implements BookmarkControllerI {
      * @param {Response} res Represents response to client, including status
      * on whether deleting a bookmark was successful or not
      */
-    unbookmark = (req: Request, res: Response) =>
+    unBookmarkATuit = (req: Request, res: Response) =>
         BookmarkController.bookmarkDao
-            .unbookmark(req.params.bid)
+            .unBookmarkATuit(req.params.tid, req.params.uid)
             .then((status) => res.json(status));
 
     /**

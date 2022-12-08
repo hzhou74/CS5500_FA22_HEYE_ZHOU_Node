@@ -1,22 +1,22 @@
 /**
- * @file like dao for implementing CRUD operations
+ * @file Implements DAO managing data storage of likes. Uses mongoose TuitModel
+ * to integrate with MongoDB
  */
 import Like from "../models/Like";
 import LikeModel from "../mongoose/LikeModel";
-import LikeDaoI from "../interfaces/LikeDaoI";
+import LikeDaoI from "../interfaces/LikeDao";
 
 
 /**
- * @class LikeDao implements LikeDaoI
- * @property {LikeDao} LikeDao Singleton DAO implementing like CRUD operation
- *
+ * @class LikeDao Implements Data Access Object managing data storage
+ * of likes
+ * @property {LikeDao} UserDao Private single instance of LikeDao
  */
 export default class LikeDao implements LikeDaoI {
     private static likeDao: LikeDao | null = null;
-
     /**
-     * Create singleton LikeDao instance
-     * @returns LikeDao
+     * Gets a single instance of MessageDao
+     * @returns return like object
      */
     public static getInstance = (): LikeDao => {
         if (LikeDao.likeDao === null) {
@@ -26,37 +26,25 @@ export default class LikeDao implements LikeDaoI {
     };
     private constructor() {}
 
-    /**
-     * Find all user that like this tuit
-     * @param {string} tid tuit id
-     * @returns like
-     */
-    findAllUsersThatLikedTuit = async (tid: string): Promise<Like[]> =>
-        LikeModel.find({ tuit: tid }).populate("likedBy").exec();
+    async likeATuit(tid: string, uid: string): Promise<Like> {
+        if (!(await LikeModel.exists({ likedTuit: tid, likedBy: uid }))) {
+            return await LikeModel.create({ likedTuit: tid, likedBy: uid });
+        }
+        return await LikeModel.create({ likedTuit: tid, likedBy: uid });
+    }
 
-    /**
-     * Find all tuits by user id
-     * @param {string} uid user id
-     * @returns like
-     */
-    findAllTuitsLikedByUser = async (uid: string): Promise<Like[]> =>
-        LikeModel.find({ likedBy: uid }).populate("tuit").exec();
+    async dislikeATuit(tid: string, uid: string): Promise<any> {
+        return await LikeModel.deleteOne({ likedTuit: tid, likedBy: uid });
+    }
 
-    /**
-     * Create a like from user id and tuit id
-     * @param {string }uid user id
-     * @param {string }tid tuit id
-     * @returns like
-     */
-    userLikesTuit = async (uid: string, tid: string): Promise<any> =>
-        LikeModel.create({ tuit: tid, likedBy: uid });
+    async findTuitsLikedByAUser(uid: string): Promise<any> {
+        //modify to get array of tuit
+        //  return await LikeModel.find({likedBy:uid})
+        return await LikeModel.find({ likedBy: uid }).populate("likedTuit").exec();
+    }
 
-    /**
-     * Delete tuits
-     * @param {string }uid user id
-     * @param {string }tid tuit id
-     * @returns delete status
-     */
-    userUnlikesTuit = async (uid: string, tid: string): Promise<any> =>
-        LikeModel.deleteOne({ tuit: tid, likedBy: uid });
+    async findUsersThatLikedATuit(tid: string): Promise<any> {
+        //modify to get array of tuit
+        return await LikeModel.find({ likedTuit: tid }).populate("likedBy").exec();
+    }
 }

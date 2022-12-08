@@ -25,14 +25,7 @@ export default class BookmarkDao implements BookmarkDaoI {
 
     private constructor() {}
 
-    /**
-     * Create bookmark document with the BookmarkModel
-     * @param {Bookmark}bookmark json bookmark
-     * @returns bookmark document
-     */
-    async createBookmark(bookmark: Bookmark): Promise<any> {
-        return await BookmarkModel.create(bookmark);
-    }
+
 
     /**
      * Find all the bookmark tuit by the user ID
@@ -43,13 +36,18 @@ export default class BookmarkDao implements BookmarkDaoI {
         return await BookmarkModel.deleteMany({ bookmarkedBy: uid });
     }
 
-    /**
-     * Unbookmark document with the BookmarkModel
-     * @param {string} bid bookmark id
-     * @returns delete status
-     */
-    async unbookmark(bid: string): Promise<any> {
-        return await BookmarkModel.deleteOne({ _id: bid });
+    async bookmarkATuit(tid: string, uid: string): Promise<Bookmark> {
+        return await BookmarkModel.create({
+            bookmarkedTuit: tid,
+            bookmarkedBy: uid,
+        });
+    }
+
+    async unBookmarkATuit(tid: string, uid: string): Promise<any> {
+        return await BookmarkModel.deleteOne({
+            bookmarkedTuit: tid,
+            bookmarkedBy: uid,
+        });
     }
 
 
