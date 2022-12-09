@@ -90,4 +90,12 @@ export default class TuitDao implements TuitDaoI {
     async createTuitByUser(userid: string, tuit: Tuit): Promise<any> {
         return await TuitModel.create({ ...tuit, postedBy: userid });
     }
+
+    updateLikes =
+        async (tid:string, newStats:any) =>
+            TuitModel.updateOne(
+                {_id: tid},
+                {$set: {stats: newStats}});
+
+
 }
