@@ -22,7 +22,7 @@ import Location from "./Location";
  * @property {MaritalStatus} martialStatus martialStatus
  */
 export default class User {
-    private username: string = '';
+            username: string = '';
     private password: string = '';
     private firstName: string | null = null;
     private lastName: string | null = null;

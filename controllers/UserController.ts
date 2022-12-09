@@ -78,6 +78,7 @@ export default class UserController implements UserControllerI {
     deleteUserByUsername(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>): void {
         throw new Error("Method not implemented.");
     }
+
     /**
      * Retrieves all user
      * @param {Request} req Represents request from client
