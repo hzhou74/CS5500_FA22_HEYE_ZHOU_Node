@@ -15,6 +15,7 @@ export default interface DislikeDao {
      * @returns like
      */
     userDislikesTuit(tid: string, uid: string): Promise<any>;
+
     /**
      * Delete dislikes for a tuit
      * @param {string}uid user id
@@ -29,7 +30,7 @@ export default interface DislikeDao {
      * @param {string} tid tuit id
      */
     findUserDislikesTuit(uid: string, tid: string): Promise<DisLike>;
-
+}
     // /**
     //  * Find all tuits disliked by user id
     //  * @param {string} uid user id
@@ -37,9 +38,16 @@ export default interface DislikeDao {
     //  */
     // findAllTuitsDislikedByUser(uid: string): Promise<DisLike[]>;
 
-    /**
-     * Count how many dislike there is for a tuit
-     * @param tid tuit id
-     */
-    countHowManyDislikedTuit(tid: string): Promise<number>;
-}
+//     /**
+//      * Count how many dislike there is for a tuit
+//      * @param tid tuit id
+//      */
+//     countHowManyDislikedTuit(tid: string): Promise<number>;
+//
+//     /**
+//      * Find all disliked tuit by user id
+//      * @param {string} uid user id
+//      * @returns dislike
+//      */
+//     findAllTuitsDislikedByUser(uid: string): Promise<DisLike[]>;
+// }

@@ -54,6 +54,10 @@ export default class DislikeController implements DislikeControllerI {
                 "/api/users/:uid/dislike/:tid",
                 DislikeController.dislikeController.userTogglesTuitDislikes
             );
+            app.get(
+                "/api/users/:uid/dislikes",
+                DislikeController.dislikeController.findAllTuitsDislikedByUser
+            );
         }
         return DislikeController.dislikeController;
     };
@@ -148,4 +152,21 @@ export default class DislikeController implements DislikeControllerI {
             res.sendStatus(404);
         }
     };
+    findAllTuitsDislikedByUser = (req: any, res: any) => {
+        const uid = req.params.uid;
+        const profile = req.session["profile"];
+        const userId = uid === "me" && profile ? profile._id : uid;
+        DislikeController.dislikeDao
+            .findAllTuitsDislikedByUser(userId)
+            .then((dislikes) => {
+                const dislikesNonNullTuits = dislikes.filter(
+                    (dislikes) => dislikes.tuit
+                );
+                const tuitsFromDislike = dislikesNonNullTuits.map(
+                    (dislikes) => dislikes.tuit
+                );
+                res.json(tuitsFromDislike);
+            });
+    };
+
 }

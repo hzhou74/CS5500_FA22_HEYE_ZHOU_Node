@@ -43,5 +43,7 @@ export default interface DislikeControllerI {
      * @param {Request} req Represents request from client, include a parameter for tuit id and user id
      * @param {Response} res Represents response to client, returning  a status for success or failed
      */
-    userTogglesTuitDislikes(req: Request, res: Response): void;
+    // userTogglesTuitDislikes(req: Request, res: Response): void;
+    //
+    // findAllTuitsDislikedByUser(req: Request, res: Response): void;
 }
