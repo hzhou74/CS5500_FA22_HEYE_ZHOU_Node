@@ -39,6 +39,7 @@ export default class LikeController implements LikeControllerI {
             app.get("/users/:uid/likes", LikeController.likeController.findTuitsLikedByAUser);
             app.get("/tuits/:tid/likes", LikeController.likeController.findUsersThatLikedATuit);
             app.put("/api/users/:uid/likes/:tid", LikeController.likeController.userTogglesTuitLikes);
+            app.get("/api/users/:uid/likes", LikeController.likeController.findAllTuitsLikedByUser);
         }
         return LikeController.likeController;
     }
@@ -85,6 +86,22 @@ export default class LikeController implements LikeControllerI {
             res.sendStatus(404);
         }
     }
+    findAllTuitsLikedByUser = (req:any, res:any) => {
+        const uid = req.params.uid;
+        const profile = req.session['profile'];
+        const userId = uid === "me" && profile ?
+            profile._id : uid;
+
+        LikeController.likeDao.findAllTuitsLikedByUser(userId)
+            .then(likes => {
+                const likesNonNullTuits =
+                    likes.filter(like => like);
+                const tuitsFromLikes =
+                    likesNonNullTuits.map(like => like);
+                res.json(tuitsFromLikes);
+            });
+    }
+
 
 
 }
