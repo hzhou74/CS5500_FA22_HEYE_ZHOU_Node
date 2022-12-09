@@ -3,6 +3,7 @@
  */
 import {Request, Response, Express} from "express";
 import LikeDao from "../daos/LikeDao";
+import TuitDao from "../daos/TuitDao";
 import LikeControllerI from "../interfaces/LikeController";
 
 /**
@@ -37,6 +38,7 @@ export default class LikeController implements LikeControllerI {
             app.delete("/users/:uid/likes/:tid", LikeController.likeController.dislikeATuit);
             app.get("/users/:uid/likes", LikeController.likeController.findTuitsLikedByAUser);
             app.get("/tuits/:tid/likes", LikeController.likeController.findUsersThatLikedATuit);
+            app.put("/api/users/:uid/likes/:tid", LikeController.likeController.userTogglesTuitLikes);
         }
         return LikeController.likeController;
     }
@@ -56,5 +58,33 @@ export default class LikeController implements LikeControllerI {
 
     findUsersThatLikedATuit = (req: Request, res: Response)=> LikeController.likeDao.findUsersThatLikedATuit(req.params.tid)
         .then(likes => res.json(likes));
+
+    userTogglesTuitLikes = async (req:any, res:any) => {
+        const tuitDao: TuitDao = TuitDao.getInstance();
+        const uid = req.params.uid;
+        const tid = req.params.tid;
+        const profile = req.session['profile'];
+        const userId = uid === "me" && profile ?
+            profile._id : uid;
+        try {
+            const userAlreadyLikedTuit = await LikeController.likeDao
+                .findUserLikesTuit(userId, tid);
+            const howManyLikedTuit = await LikeController.likeDao
+                .countHowManyLikedTuit(tid);
+            let tuit: any = await tuitDao.findTuitById(tid);
+            if (userAlreadyLikedTuit) {
+                await LikeController.likeDao.userUnlikesTuit(userId, tid);
+                tuit.stats.likes = howManyLikedTuit - 1;
+            } else {
+                await LikeController.likeDao.userLikesTuit(userId, tid);
+                tuit.stats.likes = howManyLikedTuit + 1;
+            };
+            await tuitDao.updateLikes(tid, tuit.stats);
+            res.sendStatus(200);
+        } catch (e) {
+            res.sendStatus(404);
+        }
+    }
+
 
 }

@@ -47,4 +47,21 @@ export default class LikeDao implements LikeDaoI {
         //modify to get array of tuit
         return await LikeModel.find({ likedTuit: tid }).populate("likedBy").exec();
     }
+
+    findUserLikesTuit =
+        async (uid:string, tid:string) =>
+            LikeModel.findOne(
+                {tuit: tid, likedBy: uid});
+
+    countHowManyLikedTuit =
+        async (tid: string) =>
+            LikeModel.count({tuit: tid});
+
+    userLikesTuit =
+        async (uid:string, tid:string) =>
+            LikeModel.create({tuit: tid, likedBy: uid});
+
+    userUnlikesTuit =
+        async (uid:string, tid:string) =>
+            LikeModel.deleteOne({tuit: tid, likedBy: uid});
 }

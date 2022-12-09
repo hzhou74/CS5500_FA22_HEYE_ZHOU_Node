@@ -10,9 +10,18 @@ import Like from "../models/Like";
  * @property {string} likedBy represents the person who liked the tuit
  * @property {string} likedTuit represents the tuit which got liked
  */
-const LikeSchema = new mongoose.Schema<Like>({
-    postedOn: {type: Date, default: Date.now},
-    likedBy: {type: Schema.Types.ObjectId, ref: "UserModel"},
-    likedTuit: {type: Schema.Types.ObjectId, ref: "TuitModel"}
+const LikesSchema = new mongoose.Schema({
+    tuit: {type: Schema.Types.ObjectId,
+        ref: "TuitModel"},
+    likedBy: {type: Schema.Types.ObjectId,
+        ref: "UserModel"},
 }, {collection: "likes"});
-export default LikeSchema;
+export default LikesSchema;
+
+
+// const LikeSchema = new mongoose.Schema<Like>({
+//     postedOn: {type: Date, default: Date.now},
+//     likedBy: {type: Schema.Types.ObjectId, ref: "UserModel"},
+//     likedTuit: {type: Schema.Types.ObjectId, ref: "TuitModel"}
+// }, {collection: "likes"});
+// export default LikeSchema;
