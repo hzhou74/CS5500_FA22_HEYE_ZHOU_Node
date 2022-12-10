@@ -12,21 +12,20 @@ const AuthenticationController = (app: Express) => {
         const newUser = req.body;
         const password = newUser.password;
         const hash = await bcrypt.hash(password, saltRounds);
+
         newUser.password = hash;
 
-        const existingUser = await userDao
-            .findUserByUsername(req.body.username);
-        if (existingUser.length > 0) {
+        const existingUser = await userDao.findUserByUsername(req.body.username);
+        if (existingUser) {
             res.sendStatus(403);
             return;
         } else {
-            const insertedUser = await userDao
-                .createUser(newUser);
-            insertedUser.password = '';
-            req.session['profile'] = insertedUser;
+            const insertedUser = await userDao.createUser(newUser);
+            insertedUser.password = "";
+            req.session["profile"] = insertedUser;
             res.json(insertedUser);
         }
-    }
+    };
 
     const profile = (req: any, res: any) => {
         const profile = req.session['profile'];
