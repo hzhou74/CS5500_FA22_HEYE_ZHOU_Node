@@ -25,6 +25,11 @@ export default class DislikeDao implements DislikeDaoI {
     };
     private constructor() {}
 
+    /**
+     * Dislike a tuit
+     * @param {string}uid user id
+     * @param {string}tid tuit id
+     */
     async dislikeATuit(tid: string, uid: string): Promise<any> {
         if (!(await DislikeModel.exists({ dislikedTuit: tid, dislikedBy: uid }))) {
             return await DislikeModel.create({ dislikedTuit: tid, dislikedBy: uid });
@@ -32,6 +37,11 @@ export default class DislikeDao implements DislikeDaoI {
         return await DislikeModel.findOne({ dislikedTuit: tid, dislikedBy: uid });
     }
 
+    /**
+     * like a tuit
+     * @param {string}uid user id
+     * @param {string}tid tuit id
+     */
     async likeATuit(tid: string, uid: string): Promise<any> {
         return await DislikeModel.deleteOne({ dislikedTuit: tid, dislikedBy: uid });
     }

@@ -26,6 +26,11 @@ export default class LikeDao implements LikeDaoI {
     };
     private constructor() {}
 
+    /**
+     * like a tuit
+     * @param {string}uid user id
+     * @param {string}tid tuit id
+     */
     async likeATuit(tid: string, uid: string): Promise<any> {
         if (!(await LikeModel.exists({ likedTuit: tid, likedBy: uid }))) {
             return await LikeModel.create({ likedTuit: tid, likedBy: uid });
@@ -33,6 +38,11 @@ export default class LikeDao implements LikeDaoI {
         return await LikeModel.findOne({ likedTuit: tid, likedBy: uid });
     }
 
+    /**
+     * Dislike a tuit
+     * @param {string}uid user id
+     * @param {string}tid tuit id
+     */
     async dislikeATuit(tid: string, uid: string): Promise<any> {
         return await LikeModel.deleteOne({ likedTuit: tid, likedBy: uid });
     }
