@@ -11,7 +11,7 @@ export default interface LikeDao {
      * @param tid tuit id which is disliked
      * @param uid user id which is dislikes the tuit
      */
-    likeATuit(tid: string, uid: string): Promise<Like>;
+    likeATuit(tid: string, uid: string): Promise<any>;
     /**
      * Tuit that is disliked
      * @param tid tuit id which is disliked
