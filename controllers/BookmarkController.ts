@@ -63,9 +63,7 @@ export default class BookmarkController implements BookmarkControllerI {
 
     /**
      * Create a bookmark
-     * @param {Request} req Represents request from client, including body
      * containing the JSON object for the new bookmark to be inserted in the database
-     * @param {Response} res Represents response to client, including the
      * body formatted as JSON containing the new bookmark that was inserted in the database
      */
     private constructor() {}

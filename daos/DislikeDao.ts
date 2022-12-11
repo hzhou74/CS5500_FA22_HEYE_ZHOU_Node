@@ -25,6 +25,13 @@ export default class DislikeDao implements DislikeDaoI {
     };
     private constructor() {}
 
+    userUnDislikesTuit(tid: string, uid: string): Promise<Dislike> {
+        throw new Error("Method not implemented.");
+    }
+    findUserDislikesTuit(uid: string, tid: string): Promise<Dislike> {
+        throw new Error("Method not implemented.");
+    }
+
     /**
      * Dislike a tuit
      * @param {string}uid user id
@@ -64,10 +71,10 @@ export default class DislikeDao implements DislikeDaoI {
             })
             .exec();
 
-    findUserDislikesTuit =
-        async (uid:string, tid:string) =>
-            DislikeModel.findOne(
-                {tuit: tid, dislikedBy: uid});
+    // findUserDislikesTuit =
+    //     async (uid:string, tid:string) =>
+    //         DislikeModel.findOne(
+    //             {tuit: tid, dislikedBy: uid});
 
     countHowManyDislikedTuit =
         async (tid: string) =>
@@ -77,8 +84,8 @@ export default class DislikeDao implements DislikeDaoI {
         async (uid:string, tid:string) =>
             DislikeModel.create({tuit: tid, dislikedBy: uid});
 
-    userUnDislikesTuit =
-        async (uid:string, tid:string) =>
-            DislikeModel.deleteOne({tuit: tid, dislikedBy: uid});
+    // userUnDislikesTuit =
+    //     async (uid:string, tid:string) =>
+    //         DislikeModel.deleteOne({tuit: tid, dislikedBy: uid});
 
 }
