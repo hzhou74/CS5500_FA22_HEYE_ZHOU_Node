@@ -25,12 +25,6 @@ export default class DislikeDao implements DislikeDaoI {
     };
     private constructor() {}
 
-    userUnDislikesTuit(tid: string, uid: string): Promise<Dislike> {
-        throw new Error("Method not implemented.");
-    }
-    findUserDislikesTuit(uid: string, tid: string): Promise<Dislike> {
-        throw new Error("Method not implemented.");
-    }
 
     /**
      * Dislike a tuit
@@ -61,31 +55,5 @@ export default class DislikeDao implements DislikeDaoI {
         return await DislikeModel.find({ dislikedTuit: tid }).populate("dislikedBy").exec();
     }
 
-    findAllTuitsDislikedByUser = async (uid: string): Promise<Dislike[]> =>
-        DislikeModel.find({ dislikedBy: uid })
-            .populate({
-                path: "tuit",
-                populate: {
-                    path: "postedBy",
-                },
-            })
-            .exec();
-
-    // findUserDislikesTuit =
-    //     async (uid:string, tid:string) =>
-    //         DislikeModel.findOne(
-    //             {tuit: tid, dislikedBy: uid});
-
-    countHowManyDislikedTuit =
-        async (tid: string) =>
-            DislikeModel.count({tuit: tid});
-
-    userDislikesTuit =
-        async (uid:string, tid:string) =>
-            DislikeModel.create({tuit: tid, dislikedBy: uid});
-
-    // userUnDislikesTuit =
-    //     async (uid:string, tid:string) =>
-    //         DislikeModel.deleteOne({tuit: tid, dislikedBy: uid});
 
 }
