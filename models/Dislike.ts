@@ -12,7 +12,8 @@ import User from "./User";
  * @property {User} dislikedBy User disliking the tuit
  */
 
-export default interface Like {
-    tuit: Tuit;
-    dislikedBy: User;
+export default class DisLike {
+    private dislikedBy: User | null = null;
+    private dislikedTuit: Tuit | null = null;
+    private postedOn: Date = new Date();
 }

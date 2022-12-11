@@ -5,6 +5,8 @@ import {Request, Response, Express} from "express";
 import LikeDao from "../daos/LikeDao";
 import TuitDao from "../daos/TuitDao";
 import LikeControllerI from "../interfaces/LikeController";
+import Like from "../models/Like";
+import LikeModel from "../mongoose/LikeModel";
 
 /**
  * @class LikeController Implements RESTful Web service API for users resource.
